@@ -5,38 +5,6 @@
     <p class="text-xl text-gray-600">Encontre o imóvel ideal para você</p>
   </div>
 
-  <!-- Navegação -->
-  <nav class="bg-white shadow rounded-lg p-4 mb-8">
-    <div class="flex justify-between items-center">
-      <div class="flex space-x-4">
-        <%= link_to "Todos os Imóveis", properties_path, 
-            class: "text-blue-600 hover:text-blue-800 font-medium" %>
-        <span class="text-gray-400">|</span>
-        <div class="relative group">
-          <button class="text-gray-600 hover:text-gray-800 font-medium">Bairros ▼</button>
-          <div class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-2 py-2 w-48 z-10">
-            <% @neighborhoods.each do |neighborhood| %>
-              <%= link_to neighborhood.name, neighborhood_path(neighborhood), 
-                  class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      
-      <div class="space-x-4">
-        <% if user_signed_in? %>
-          <span class="text-sm text-gray-600">Olá, <%= current_user.email %></span>
-          <%= link_to "Admin", admin_root_path, 
-              class: "bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, 
-              class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
-        <% else %>
-          <%= link_to "Login", new_user_session_path, 
-              class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
-        <% end %>
-      </div>
-    </div>
-  </nav>
 
   <!-- Grid de Imóveis -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

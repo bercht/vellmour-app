@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Vellmour App" %></title>
+    <title>Vellmour Imóveis</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <% if notice %>
-        <p class="notice bg-green-100 text-green-800 p-4 mb-4"><%= notice %></p>
-      <% end %>
+  <body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Flash messages -->
+    <% if notice %>
+      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 mb-4">
+        <%= notice %>
+      </div>
+    <% end %>
 
-      <% if alert %>
-        <p class="alert bg-red-100 text-red-800 p-4 mb-4"><%= alert %></p>
-      <% end %>
+    <% if alert %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <!-- Header Navigation (apenas em páginas públicas) -->
+    <% unless controller_name == "admin" || params[:controller]&.starts_with?("admin/") %>
+      <div class="max-w-6xl mx-auto px-4 py-4">
+        <%= render 'shared/header' %>
+      </div>
+    <% end %>
+
+    <!-- Main content -->
+    <main class="flex-grow">
       <%= yield %>
     </main>
+
+    <!-- Footer (apenas em páginas públicas) -->
+    <% unless controller_name == "admin" || params[:controller]&.starts_with?("admin/") %>
+      <%= render 'shared/footer' %>
+    <% end %>
   </body>
 </html>
+

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'properties#index'
+  root 'home#index'
   
   resources :properties, only: [:index, :show]
   resources :neighborhoods, only: [:show]

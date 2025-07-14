@@ -1,0 +1,94 @@
+<div class="max-w-6xl mx-auto px-4 py-8">
+  <!-- Navegação -->
+  <div class="mb-8">
+    <%= link_to "← Voltar aos imóveis", properties_path, 
+        class: "text-blue-600 hover:text-blue-800 font-medium" %>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <!-- Header -->
+    <div class="p-8 border-b">
+      <div class="flex justify-between items-start">
+        <div>
+          <h1 class="text-3xl font-bold text-gray-900 mb-2"><%= @property.title %></h1>
+          <p class="text-xl text-blue-600 mb-1">📍 <%= @property.neighborhood.name %></p>
+          <p class="text-3xl font-bold text-green-600">R$ <%= number_with_delimiter(@property.price, delimiter: '.') %></p>
+        </div>
+        
+        <% if user_signed_in? %>
+          <%= link_to "Editar", edit_admin_property_path(@property), 
+              class: "bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded transition-colors" %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Galeria de Imagens -->
+    <% if @property.images.any? %>
+      <div class="p-8 border-b">
+        <h2 class="text-2xl font-bold mb-4">Fotos</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <% @property.images.each do |image| %>
+            <div class="aspect-w-16 aspect-h-12">
+              <%= image_tag image, 
+                  class: "w-full h-64 object-cover rounded-lg shadow cursor-pointer hover:shadow-lg transition-shadow",
+                  onclick: "openModal('#{url_for(image)}')" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Descrição -->
+    <div class="p-8">
+      <h2 class="text-2xl font-bold mb-4">Descrição</h2>
+      <div class="prose max-w-none">
+        <%= simple_format(@property.description) %>
+      </div>
+    </div>
+
+    <!-- Informações do Bairro -->
+    <div class="p-8 bg-gray-50">
+      <h2 class="text-2xl font-bold mb-4">Sobre o Bairro</h2>
+      <p class="text-lg text-gray-700 mb-4"><%= @property.neighborhood.name %></p>
+      <%= link_to "Ver outros imóveis neste bairro", neighborhood_path(@property.neighborhood), 
+          class: "text-blue-600 hover:text-blue-800 font-medium" %>
+    </div>
+
+    <!-- Contato -->
+    <div class="p-8 border-t">
+      <h2 class="text-2xl font-bold mb-4">Entre em Contato</h2>
+      <div class="flex space-x-4">
+        <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-bold">
+          📱 WhatsApp
+        </button>
+        <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-bold">
+          📧 Email
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para ampliar imagens -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center p-4">
+  <div class="relative max-w-4xl max-h-full">
+    <img id="modalImage" src="" alt="" class="max-w-full max-h-full object-contain">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-white text-2xl hover:text-gray-300">✕</button>
+  </div>
+</div>
+
+<script>
+function openModal(imageSrc) {
+  document.getElementById('modalImage').src = imageSrc;
+  document.getElementById('imageModal').classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById('imageModal').classList.add('hidden');
+}
+
+// Fechar modal ao clicar fora da imagem
+document.getElementById('imageModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>

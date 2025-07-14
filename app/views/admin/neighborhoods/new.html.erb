@@ -1,0 +1,26 @@
+<div class="prose mx-auto my-16">
+  <h1 class="text-3xl font-bold text-purple-600 mb-8">Novo Bairro</h1>
+  
+  <%= form_with model: [:admin, @neighborhood], local: true, class: "space-y-6" do |form| %>
+    <% if @neighborhood.errors.any? %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+        <h4><%= pluralize(@neighborhood.errors.count, "erro") %> encontrado:</h4>
+        <ul>
+          <% @neighborhood.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :name, "Nome do Bairro", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500" %>
+    </div>
+
+    <div class="flex space-x-4">
+      <%= form.submit "Criar Bairro", class: "bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition-colors" %>
+      <%= link_to "Cancelar", admin_neighborhoods_path, class: "bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors" %>
+    </div>
+  <% end %>
+</div>

@@ -1,19 +1,26 @@
 <div class="prose mx-auto my-16">
   <h1 class="text-4xl font-bold text-center text-purple-600">
-    Admin Dashboard
+    Admin Dashboard - Imobiliária
   </h1>
   
   <div class="bg-purple-100 p-8 rounded-lg mt-8">
     <h2 class="text-2xl font-semibold mb-4">Bem-vindo, <%= current_user.email %>!</h2>
-    <p class="text-gray-700 mb-4">
-      Este é o painel administrativo do sistema.
+    <p class="text-gray-700 mb-6">
+      Gerencie imóveis, bairros e usuários do sistema.
     </p>
     
-    <div class="space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <%= link_to "Gerenciar Imóveis", admin_properties_path, 
+          class: "block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded transition-colors text-center font-semibold" %>
+      <%= link_to "Gerenciar Bairros", admin_neighborhoods_path, 
+          class: "block bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded transition-colors text-center font-semibold" %>
       <%= link_to "Gerenciar Usuários", admin_users_path, 
-          class: "block bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded transition-colors text-center" %>
-      <%= link_to "Voltar ao Site", root_path, 
-          class: "block bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded transition-colors text-center" %>
+          class: "block bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded transition-colors text-center font-semibold" %>
+      <%= link_to "Ver Site", root_path, 
+          class: "block bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded transition-colors text-center font-semibold" %>
+      <%= link_to "Logout", destroy_user_session_path, 
+      data: { "turbo-method": :delete },
+      class: "block bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded transition-colors text-center font-semibold" %>    
     </div>
   </div>
 </div>

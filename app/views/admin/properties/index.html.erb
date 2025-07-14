@@ -1,0 +1,73 @@
+<div class="prose mx-auto my-16 max-w-6xl">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-purple-600">Gerenciar Imóveis</h1>
+    <%= link_to "Novo Imóvel", new_admin_property_path, 
+        class: "bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition-colors" %>
+  </div>
+  
+  <div class="bg-white shadow rounded-lg overflow-hidden">
+    <table class="min-w-full">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Imagem</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Título</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Bairro</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Preço</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+        <% @properties.each do |property| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden">
+                <% if property.images.any? %>
+                  <%= image_tag property.images.first, class: "w-full h-full object-cover" %>
+                <% else %>
+                  <div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">
+                    Sem foto
+                  </div>
+                <% end %>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="text-sm font-medium text-gray-900"><%= truncate(property.title, length: 30) %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm text-gray-500"><%= property.neighborhood.name %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-sm font-medium text-green-600">R$ <%= number_with_delimiter(property.price, delimiter: '.') %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+              <%= link_to "Ver", property_path(property), 
+                  class: "text-green-600 hover:text-green-900", target: "_blank" %>
+              <%= link_to "Editar", edit_admin_property_path(property), 
+                  class: "text-blue-600 hover:text-blue-900" %>
+              <%= link_to "Deletar", admin_property_path(property), 
+                  method: :delete, 
+                  data: { confirm: "Tem certeza?" },
+                  class: "text-red-600 hover:text-red-900" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <% if @properties.empty? %>
+      <div class="text-center py-12">
+        <p class="text-gray-500">Nenhum imóvel cadastrado ainda.</p>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="mt-6">
+    <%= link_to "Voltar ao Dashboard", admin_root_path, 
+        class: "bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded transition-colors" %>
+  </div>
+  <div class="mt-6">
+    <%= link_to "Logout", destroy_user_session_path, 
+    data: { "turbo-method": :delete },
+    class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
+  </div>
+</div>

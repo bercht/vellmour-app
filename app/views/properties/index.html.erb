@@ -1,0 +1,78 @@
+<div class="max-w-6xl mx-auto px-4 py-8">
+  <!-- Header -->
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-4">Imóveis Disponíveis</h1>
+    <p class="text-xl text-gray-600">Encontre o imóvel ideal para você</p>
+  </div>
+
+  <!-- Navegação -->
+  <nav class="bg-white shadow rounded-lg p-4 mb-8">
+    <div class="flex justify-between items-center">
+      <div class="flex space-x-4">
+        <%= link_to "Todos os Imóveis", properties_path, 
+            class: "text-blue-600 hover:text-blue-800 font-medium" %>
+        <span class="text-gray-400">|</span>
+        <div class="relative group">
+          <button class="text-gray-600 hover:text-gray-800 font-medium">Bairros ▼</button>
+          <div class="absolute hidden group-hover:block bg-white shadow-lg rounded mt-2 py-2 w-48 z-10">
+            <% @neighborhoods.each do |neighborhood| %>
+              <%= link_to neighborhood.name, neighborhood_path(neighborhood), 
+                  class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="space-x-4">
+        <% if user_signed_in? %>
+          <span class="text-sm text-gray-600">Olá, <%= current_user.email %></span>
+          <%= link_to "Admin", admin_root_path, 
+              class: "bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, 
+              class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, 
+              class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Grid de Imóveis -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <% @properties.each do |property| %>
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+        <!-- Imagem -->
+        <div class="h-48 bg-gray-200 relative">
+          <% if property.images.any? %>
+            <%= image_tag property.images.first, 
+                class: "w-full h-full object-cover" %>
+          <% else %>
+            <div class="w-full h-full flex items-center justify-center text-gray-500">
+              Sem imagem
+            </div>
+          <% end %>
+          <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full font-bold">
+            R$ <%= number_with_delimiter(property.price, delimiter: '.') %>
+          </div>
+        </div>
+        
+        <!-- Conteúdo -->
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-gray-900 mb-2"><%= property.title %></h3>
+          <p class="text-blue-600 mb-3">📍 <%= property.neighborhood.name %></p>
+          <p class="text-gray-600 mb-4 line-clamp-3"><%= truncate(property.description, length: 100) %></p>
+          
+          <%= link_to "Ver Detalhes", property_path(property), 
+              class: "w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors block text-center" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @properties.empty? %>
+    <div class="text-center py-12">
+      <p class="text-xl text-gray-500">Nenhum imóvel cadastrado ainda.</p>
+    </div>
+  <% end %>
+</div>

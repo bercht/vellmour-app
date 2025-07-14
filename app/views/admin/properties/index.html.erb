@@ -66,8 +66,8 @@
         class: "bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded transition-colors" %>
   </div>
   <div class="mt-6">
-    <%= link_to "Logout", destroy_user_session_path, 
-    data: { "turbo-method": :delete },
+    <%= button_to "Logout", destroy_user_session_path, 
+    method: :delete,
     class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
   </div>
 </div>

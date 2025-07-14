@@ -7,10 +7,11 @@
       
       <span class="text-gray-400">|</span>
       
-      <%= link_to "Todos os Imóveis", properties_path, 
-          class: "text-blue-600 hover:text-blue-800 font-medium" %>
+      <%= link_to "Home", root_path, 
+          class: "text-gray-600 hover:text-gray-800 font-medium #{'text-blue-600' if current_page?(root_path)}" %>
       
-      <span class="text-gray-400">|</span>
+      <%= link_to "Todos os Imóveis", properties_path, 
+          class: "text-gray-600 hover:text-gray-800 font-medium #{'text-blue-600' if current_page?(properties_path)}" %>
       
       <div class="relative group">
         <button class="text-gray-600 hover:text-gray-800 font-medium">Bairros ▼</button>

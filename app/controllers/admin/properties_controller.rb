@@ -50,6 +50,6 @@ class Admin::PropertiesController < Admin::BaseController
   end
 
   def property_params
-    params.require(:property).permit(:title, :price, :description, :neighborhood_id, images: [])
+    params.require(:property).permit(:title, :price, :description, :neighborhood_id, :featured, images: [])
   end
 end

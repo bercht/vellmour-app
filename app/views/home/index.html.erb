@@ -1,4 +1,25 @@
 <div class="prose mx-auto my-16">
+  <!-- Navegação -->
+  <nav class="bg-blue-50 p-4 rounded-lg mb-8">
+    <div class="flex justify-between items-center">
+      <h2 class="text-lg font-semibold">Navegação</h2>
+      <div class="space-x-4">
+        <% if user_signed_in? %>
+          <span class="text-sm text-gray-600">Olá, <%= current_user.email %></span>
+          <%= link_to "Admin", admin_root_path, 
+              class: "bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, 
+              class: "bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, 
+              class: "bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
+          <%= link_to "Cadastrar", new_user_registration_path, 
+              class: "bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm transition-colors" %>
+        <% end %>
+      </div>
+    </div>
+  </nav>
+
   <h1 class="text-4xl font-bold text-center text-blue-600">
     Bem-vindo ao Meu App Teste!
   </h1>
@@ -6,7 +27,7 @@
   <div class="bg-gray-100 p-8 rounded-lg mt-8">
     <h2 class="text-2xl font-semibold mb-4">App Rails funcionando!</h2>
     <p class="text-gray-700">
-      Este é um teste de deploy no Heroku com Rails 7.2.2.1, Ruby 3.3.7, PostgreSQL e Tailwind CSS.
+      Este é um teste de deploy no Heroku com Rails 7.2.2.1, Ruby 3.3.7, PostgreSQL, Tailwind CSS e Devise.
     </p>
     
     <div class="mt-6">

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     root 'dashboard#index'
     resources :users
     resources :neighborhoods
-    resources :properties
+    resources :properties do
+      resources :images, only: [:destroy], module: :properties
+    end
   end
 end

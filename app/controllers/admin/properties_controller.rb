@@ -14,10 +14,16 @@ class Admin::PropertiesController < Admin::BaseController
   end
 
   def create
-    @property = Property.new(property_params)
+    @property = Property.new(property_params_without_images)
     @neighborhoods = Neighborhood.all
     
     if @property.save
+      # Anexar imagens se foram enviadas
+      if params[:property][:images].present?
+        valid_images = params[:property][:images].reject { |image| image.blank? }
+        @property.images.attach(valid_images) if valid_images.any?
+      end
+      
       redirect_to admin_properties_path, notice: 'Propriedade criada com sucesso.'
     else
       render :new, status: :unprocessable_entity
@@ -31,7 +37,13 @@ class Admin::PropertiesController < Admin::BaseController
   def update
     @neighborhoods = Neighborhood.all
     
-    if @property.update(property_params)
+    if @property.update(property_params_without_images)
+      # Anexar novas imagens às existentes (não substituir)
+      if params[:property][:images].present?
+        valid_images = params[:property][:images].reject { |image| image.blank? }
+        @property.images.attach(valid_images) if valid_images.any?
+      end
+      
       redirect_to admin_properties_path, notice: 'Propriedade atualizada com sucesso.'
     else
       render :edit, status: :unprocessable_entity
@@ -51,5 +63,9 @@ class Admin::PropertiesController < Admin::BaseController
 
   def property_params
     params.require(:property).permit(:title, :price, :description, :neighborhood_id, images: [])
+  end
+
+  def property_params_without_images
+    params.require(:property).permit(:title, :price, :description, :neighborhood_id)
   end
 end

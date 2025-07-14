@@ -42,10 +42,17 @@
     <% if @property.images.any? %>
       <div>
         <label class="block text-sm font-medium text-gray-700 mb-3">Imagens Atuais</label>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="current-images">
           <% @property.images.each do |image| %>
-            <div class="relative">
+            <div class="relative" id="<%= dom_id(image, :container) %>">
               <%= image_tag image, class: "w-full h-24 object-cover rounded-lg" %>
+              <%= link_to "✕", admin_property_image_path(@property, image), 
+                  method: :delete,
+                  data: { 
+                    "turbo-method": :delete,
+                    "turbo-confirm": "Tem certeza que deseja remover esta imagem?" 
+                  },
+                  class: "absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600 transition-colors" %>
             </div>
           <% end %>
         </div>
@@ -55,7 +62,10 @@
     <div>
       <%= form.label :images, "Adicionar Novas Imagens", class: "block text-sm font-medium text-gray-700" %>
       <%= form.file_field :images, multiple: true, accept: "image/*", class: "mt-1 block w-full" %>
-      <p class="text-sm text-gray-500 mt-2">Selecione múltiplas imagens para adicionar (JPG, PNG, etc.)</p>
+      <p class="text-sm text-gray-500 mt-2">
+        <strong>Importante:</strong> As novas imagens serão ADICIONADAS às existentes (não substituídas).
+        <br>Para remover imagens, use o botão ✕ em cada imagem acima.
+      </p>
     </div>
 
     <div class="flex space-x-4">

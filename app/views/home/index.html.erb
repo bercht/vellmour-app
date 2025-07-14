@@ -1,3 +1,239 @@
+<div class="bg-gray-900">
+  <!-- Header absoluto -->
+  <%= render 'shared/header' %>
+
+  <div class="relative isolate overflow-hidden pt-14">
+    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 size-full object-cover" />
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+          <div class="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
+            Novos imóveis chegando em breve. 
+            <%= link_to properties_path, class: "font-semibold text-white" do %>
+              <span class="absolute inset-0" aria-hidden="true"></span>Ver todos <span aria-hidden="true">&rarr;</span>
+            <% end %>
+          </div>
+        </div>
+        <div class="text-center">
+          <h1 class="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">Encontre seu lar dos sonhos</h1>
+          <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">Casas, apartamentos e coberturas com a qualidade que você merece. Localização privilegiada e acabamento de primeira.</p>
+          <div class="mt-10 flex items-center justify-center gap-x-6">
+            <%= link_to properties_path, class: "rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400" do %>
+              Ver Imóveis
+            <% end %>
+            <a href="#featured" class="text-sm/6 font-semibold text-white">Saiba mais <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+      <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+  </div>
+</div>
+<!-- END HERO -->
+
+<!-- Serviços section -->
+
+<div class="bg-gray-900 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl lg:mx-0">
+      <h2 class="text-base/7 font-semibold text-indigo-400">Nossos Serviços</h2>
+      <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">
+        Construção e venda de imóveis em Pindamonhangaba
+      </p>
+      <p class="mt-6 text-lg/8 text-gray-300">
+        Acompanhamento completo, projetos sob medida, financiamento facilitado, documentação jurídica, equipe especializada e materiais de primeira linha — tudo para sua casa dos sonhos.
+      </p>
+    </div>
+    <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base/7 text-gray-400 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-16">
+      
+      <!-- Atendimento Personalizado -->
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+
+          <svg class="absolute top-1 left-1 size-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+          </svg>
+
+
+          ATENDIMENTO PERSONALIZADO
+        </dt>
+        <dd class="inline">
+          Acompanhamento completo desde o projeto até a entrega das chaves, com total transparência.
+        </dd>
+      </div>
+
+      <!-- Projetos Personalizados -->
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+          <svg class="absolute top-1 left-1 size-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <!-- ícone de camadas/layers -->
+            <path d="M4 3h12v2H4V3zm0 4h12v2H4V7zm0 4h12v2H4v-2zm0 4h12v2H4v-2z"/>
+          </svg>
+          PROJETOS PERSONALIZADOS
+        </dt>
+        <dd class="inline">
+          Desenvolvemos projetos sob medida para suas necessidades, sempre respeitando seu orçamento e prazo de entrega.
+        </dd>
+      </div>
+
+      <!-- Financiamento -->
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+          <svg class="absolute top-1 left-1 size-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V13.5Zm0 2.25h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V18Zm2.498-6.75h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V13.5Zm0 2.25h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V18Zm2.504-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5Zm0 2.25h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V18Zm2.498-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5ZM8.25 6h7.5v2.25h-7.5V6ZM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0 0 12 2.25Z" />
+          </svg>
+
+          FINANCIAMENTO
+        </dt>
+        <dd class="inline">
+          Auxiliamos na obtenção de financiamento e facilitamos todo o processo de documentação para sua casa própria.
+        </dd>
+      </div>
+
+      <!-- Documentação Completa -->
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+          <svg class="absolute top-1 left-1 size-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
+          </svg>
+
+          DOCUMENTAÇÃO COMPLETA
+        </dt>
+        <dd class="inline">
+          Cuidamos de toda a parte legal e documental, garantindo segurança jurídica na compra do seu imóvel.
+        </dd>
+      </div>
+
+      <!-- Equipe Especializada -->
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+          <svg class="absolute top-1 left-1 size-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <!-- ícone de usuário/equipe -->
+            <path d="M10 2a4 4 0 0 1 4 4v1H6V6a4 4 0 0 1 4-4zm0 8a6 6 0 0 0-6 6v1h12v-1a6 6 0 0 0-6-6z"/>
+          </svg>
+          EQUIPE ESPECIALIZADA
+        </dt>
+        <dd class="inline">
+          Profissionais qualificados e experientes em construção civil, garantindo qualidade em cada etapa.
+        </dd>
+      </div>
+
+      <!-- Materiais de Qualidade -->
+      <div class="relative pl-9">
+        <dt class="inline font-semibold text-white">
+          <svg class="absolute top-1 left-1 size-5 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.633 10.25c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 0 1 2.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 0 0 .322-1.672V2.75a.75.75 0 0 1 .75-.75 2.25 2.25 0 0 1 2.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282m0 0h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 0 1-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 0 0-1.423-.23H5.904m10.598-9.75H14.25M5.904 18.5c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 0 1-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 9.953 4.167 9.5 5 9.5h1.053c.472 0 .745.556.5.96a8.958 8.958 0 0 0-1.302 4.665c0 1.194.232 2.333.654 3.375Z" />
+          </svg>
+
+          MATERIAIS DE QUALIDADE
+        </dt>
+        <dd class="inline">
+          Utilizamos apenas materiais de primeira linha e fornecedores confiáveis para garantir durabilidade e segurança.
+        </dd>
+      </div>
+
+    </dl>
+  </div>
+</div>
+
+
+
+<!-- Seção com fundo branco -->
+<div class="bg-white">
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <!-- Imóveis em Destaque -->
+    <div id="featured" class="mb-16">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">Imóveis em Destaque</h2>
+        <%= link_to "Ver Todos →", properties_path, 
+            class: "text-blue-600 hover:text-blue-800 font-medium" %>
+      </div>
+
+      <% if @featured_properties.any? %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <% @featured_properties.each do |property| %>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <!-- Imagem -->
+              <div class="h-64 bg-gray-200 relative">
+                <% if property.images.any? %>
+                  <%= image_tag property.images.first, 
+                      class: "w-full h-full object-cover" %>
+                <% end %>
+                <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full font-bold">
+                  R$ <%= number_with_delimiter(property.price, delimiter: '.') %>
+                </div>
+                <div class="absolute top-4 left-4 bg-yellow-500 text-white px-3 py-1 rounded-full font-bold text-sm">
+                  ⭐ DESTAQUE
+                </div>
+              </div>
+              
+              <!-- Conteúdo -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-2"><%= property.title %></h3>
+                <p class="text-blue-600 mb-3">📍 <%= property.neighborhood.name %></p>
+                <p class="text-gray-600 mb-4 line-clamp-3"><%= truncate(property.description, length: 120) %></p>
+                
+                <%= link_to "Ver Detalhes", property_path(property), 
+                    class: "w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded transition-colors block text-center" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="text-center py-12 bg-gray-100 rounded-lg">
+          <p class="text-xl text-gray-500">Imóveis em destaque serão exibidos aqui em breve!</p>
+          <% if user_signed_in? %>
+            <%= link_to "Adicionar Imóveis", admin_properties_path, 
+                class: "mt-4 inline-block bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded transition-colors" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Seção Bairros -->
+    <div class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Explore por Bairro</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <% @neighborhoods.each do |neighborhood| %>
+          <%= link_to neighborhood_path(neighborhood), 
+              class: "bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-4 text-center group" do %>
+            <div class="text-2xl mb-2">🏘️</div>
+            <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+              <%= neighborhood.name %>
+            </h3>
+            <p class="text-sm text-gray-500">
+              <%= pluralize(neighborhood.properties.count, 'imóvel', 'imóveis') %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-blue-600 rounded-lg p-12 text-center text-white">
+      <h2 class="text-3xl font-bold mb-4">Não encontrou o que procura?</h2>
+      <p class="text-xl mb-8">Entre em contato conosco e encontraremos o imóvel ideal para você!</p>
+      <div class="flex justify-center space-x-4">
+        <button class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-bold transition-colors">
+          📱 WhatsApp
+        </button>
+        <button class="bg-white hover:bg-gray-100 text-blue-600 px-8 py-3 rounded-lg font-bold transition-colors">
+          📧 Email
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%# ######### %>
+
+
 <div class="max-w-6xl mx-auto px-4 py-8">
   <!-- Hero Section -->
   <div class="text-center mb-16">

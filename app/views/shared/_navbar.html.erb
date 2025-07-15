@@ -39,11 +39,10 @@
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <!-- Logo -->
         <div class="flex shrink-0 items-center">
-          <%= link_to root_path, class: "flex items-center space-x-2" do %>
-            <svg class="h-8 w-8 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-            </svg>
-            <span class="text-white text-xl font-bold">Vellmour</span>
+          <%= link_to root_path, class: "flex items-center" do %>
+            <%= image_tag "logo_vellmour_white.png", 
+                alt: "Vellmour", 
+                class: "h-10 w-auto" %>
           <% end %>
         </div>
         

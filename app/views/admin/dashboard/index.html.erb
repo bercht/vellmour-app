@@ -6,14 +6,14 @@
     <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black/10 px-6 ring-1 ring-white/5">
       <!-- Logo -->
       <div class="flex h-16 shrink-0 items-center">
-        <%= link_to admin_root_path, class: "flex items-center space-x-2" do %>
-          <svg class="h-8 w-8 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-          </svg>
-          <span class="text-white text-xl font-bold">Vellmour Admin</span>
+        <%= link_to admin_root_path, class: "flex items-center space-x-3" do %>
+          <%= image_tag "logo_vellmour_white.png", 
+              alt: "Vellmour Admin", 
+              class: "h-8 w-auto" %>
+          <span class="text-white text-lg font-bold">Admin</span>
         <% end %>
       </div>
-      
+            
       <!-- Navegação -->
       <nav class="flex flex-1 flex-col">
         <ul role="list" class="flex flex-1 flex-col gap-y-7">

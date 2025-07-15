@@ -99,7 +99,7 @@
               <div class="flex-1">
                 <div class="text-white text-sm truncate"><%= current_user.email %></div>
                 <%= link_to "Sair", destroy_user_session_path, 
-                    method: :delete, 
+                    data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja sair?" }, 
                     class: "text-xs text-gray-400 hover:text-white" %>
               </div>
             </div>

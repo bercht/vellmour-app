@@ -20,6 +20,10 @@
   </head>
 
   <body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navbar (renderizada condicionalmente - exceto home/index) -->
+    <% unless controller_name == "home" && action_name == "index" %>
+      <%= render 'shared/navbar' %>
+    <% end %>
     <!-- Flash messages -->
     <% if notice %>
       <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 mb-4 relative z-50">

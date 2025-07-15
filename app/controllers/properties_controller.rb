@@ -7,6 +7,12 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    # Carregar imóveis relacionados do mesmo bairro (excluindo o atual)
+    @related_properties = @property.neighborhood
+                                  .properties
+                                  .where.not(id: @property.id)
+                                  .limit(4)
+                                  .order(:created_at)
   end
 
   private

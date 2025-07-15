@@ -2,14 +2,21 @@
 <html>
   <head>
     <title>Vellmour Imóveis</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "tailwind" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    
+    <!-- Spotlight.js CSS -->
+    <link rel="stylesheet" href="https://rawcdn.githack.com/nextapps-de/spotlight/0.7.8/dist/css/spotlight.min.css">
+    
     <%= javascript_importmap_tags %>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <!-- Spotlight.js JavaScript -->
+    <script src="https://rawcdn.githack.com/nextapps-de/spotlight/0.7.8/dist/js/spotlight.min.js"></script>
+    
   </head>
 
   <body class="bg-gray-50 min-h-screen flex flex-col">

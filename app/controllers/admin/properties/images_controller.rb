@@ -26,7 +26,7 @@ class Admin::Properties::ImagesController < Admin::BaseController
   private
 
   def set_property
-    @property = Property.find(params[:property_id])
+    @property = Property.friendly.find(params[:property_id])
   end
 
   def set_image

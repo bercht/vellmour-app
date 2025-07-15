@@ -1,5 +1,8 @@
 class Property < ApplicationRecord
+  extend FriendlyId
   include PgSearch::Model
+
+  friendly_id :title, use: :slugged
   
   belongs_to :neighborhood
   has_many_attached :images

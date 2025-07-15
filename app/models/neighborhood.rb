@@ -1,5 +1,8 @@
 class Neighborhood < ApplicationRecord
+  extend FriendlyId
   has_many :properties, dependent: :destroy
+
+  friendly_id :name, use: :slugged
   
   validates :name, presence: true, uniqueness: true
   

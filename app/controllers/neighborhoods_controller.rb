@@ -8,6 +8,6 @@ class NeighborhoodsController < ApplicationController
   private
 
   def set_neighborhood
-    @neighborhood = Neighborhood.find(params[:id])
+    @neighborhood = Neighborhood.friendly.find(params[:id])
   end
 end

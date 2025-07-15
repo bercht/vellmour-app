@@ -2,3 +2,10 @@
 import { application } from "controllers/application"
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
 eagerLoadControllersFrom("controllers", application)
+
+
+import NavbarController from "./navbar_controller"
+import DropdownController from "./dropdown_controller"
+
+application.register("navbar", NavbarController)
+application.register("dropdown", DropdownController)

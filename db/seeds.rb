@@ -53,7 +53,7 @@ descriptions = [
   neighborhood = Neighborhood.all.sample
   
   property = Property.create!(
-    title: "#{property_types.sample} #{i + 1} - #{neighborhood.name}",
+    title: "#{"Casa em"} #{i + 1} - #{neighborhood.name}",
     price: rand(300_000..2_000_000),
     description: descriptions.sample,
     neighborhood: neighborhood,
@@ -62,7 +62,7 @@ descriptions = [
     bathrooms: rand(1..4),
     area_m2: rand(50..300),
     garage_spaces: rand(0..3),
-    property_type: Property.property_types.keys.sample,
+    property_type: "apartamento",
     furnished: [true, false].sample,
     created_at: rand(30.days.ago..Time.current)
   )

@@ -1,5 +1,5 @@
 source "https://rubygems.org"
-ruby "3.3.7"
+ruby "3.3.8"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.2.2", ">= 7.2.2.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -65,3 +65,4 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "devise", "~> 4.9"
 
 gem "aws-sdk-s3", "~> 1.192"
+gem "friendly_id", "~> 5.4"

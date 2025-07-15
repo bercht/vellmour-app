@@ -41,7 +41,7 @@ class Admin::NeighborhoodsController < Admin::BaseController
   private
 
   def set_neighborhood
-    @neighborhood = Neighborhood.find(params[:id])
+    @neighborhood = Neighborhood.friendly.find(params[:id])
   end
 
   def neighborhood_params

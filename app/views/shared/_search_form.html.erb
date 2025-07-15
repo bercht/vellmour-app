@@ -1,90 +1,112 @@
 <!-- Formulário de Busca Avançada -->
 <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-  <div class="mb-4">
-    <h2 class="text-xl font-bold text-gray-900 mb-2">Encontre seu imóvel ideal</h2>
-    <p class="text-gray-600">Use os filtros abaixo para refinar sua busca</p>
+  <div class="border-b border-gray-900/10 pb-6">
+    <h2 class="text-base/7 font-semibold text-gray-900">Encontre seu imóvel ideal</h2>
+    <p class="mt-1 text-sm/6 text-gray-600">Use os filtros abaixo para refinar sua busca</p>
   </div>
 
-  <%= search_form_for @q, url: properties_path, method: :get, local: true, class: "space-y-6" do |f| %>
-    <!-- Busca por palavras-chave -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 items-end">
-      <div class="lg:col-span-2">
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+  <%= search_form_for @q, url: properties_path, method: :get, local: true do |f| %>
+    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <!-- Busca por palavras-chave -->
+      <div class="col-span-full">
+        <label for="keywords" class="block text-sm/6 font-medium text-gray-900">
           Buscar por palavras-chave
         </label>
-        <%= text_field_tag :keywords, params[:keywords], 
-            placeholder: "Ex: vista mar, próximo ao shopping, reformado...", 
-            class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+        <div class="mt-2">
+          <%= text_field_tag :keywords, params[:keywords], 
+              id: "keywords",
+              placeholder: "Ex: vista mar, próximo ao shopping, reformado...", 
+              class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" %>
+        </div>
       </div>
-      <div>
-        <%= f.submit "Buscar", class: "w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-      </div>
-    </div>
 
-    <!-- Filtros Principais -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <!-- Tipo de Imóvel -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+      <div class="sm:col-span-3">
+        <label for="property_type" class="block text-sm/6 font-medium text-gray-900">
           Tipo de Imóvel
         </label>
-        <%= f.select :property_type_eq, 
-            options_for_select([['Todos os tipos', '']] + @property_types.map { |type| [type, type] }, params.dig(:q, :property_type_eq)),
-            {}, 
-            { class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" } %>
+        <div class="mt-2 grid grid-cols-1">
+          <%= f.select :property_type_eq, 
+              options_for_select([['Todos os tipos', '']] + @property_types.map { |type| [type, type] }, params.dig(:q, :property_type_eq)),
+              {}, 
+              { id: "property_type", class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" } %>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
       </div>
 
       <!-- Bairro -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+      <div class="sm:col-span-3">
+        <label for="neighborhood" class="block text-sm/6 font-medium text-gray-900">
           Bairro
         </label>
-        <%= f.select :neighborhood_id_eq, 
-            options_for_select([['Todos os bairros', '']] + @neighborhoods.map { |n| [n.name, n.id] }, params.dig(:q, :neighborhood_id_eq)),
-            {}, 
-            { class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" } %>
+        <div class="mt-2 grid grid-cols-1">
+          <%= f.select :neighborhood_id_eq, 
+              options_for_select([['Todos os bairros', '']] + @neighborhoods.map { |n| [n.name, n.id] }, params.dig(:q, :neighborhood_id_eq)),
+              {}, 
+              { id: "neighborhood", class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" } %>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
       </div>
 
       <!-- Quartos -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+      <div class="sm:col-span-2">
+        <label for="bedrooms" class="block text-sm/6 font-medium text-gray-900">
           Quartos
         </label>
-        <%= f.select :bedrooms_eq, 
-            options_for_select([
-              ['Qualquer', ''],
-              ['1 quarto', '1'],
-              ['2 quartos', '2'], 
-              ['3 quartos', '3'],
-              ['4 quartos', '4'],
-              ['5+ quartos', '5']
-            ], params.dig(:q, :bedrooms_eq)),
-            {},
-            { class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" } %>
+        <div class="mt-2 grid grid-cols-1">
+          <%= f.select :bedrooms_eq, 
+              options_for_select([
+                ['Qualquer', ''],
+                ['1 quarto', '1'],
+                ['2 quartos', '2'], 
+                ['3 quartos', '3'],
+                ['4 quartos', '4'],
+                ['5+ quartos', '5']
+              ], params.dig(:q, :bedrooms_eq)),
+              {},
+              { id: "bedrooms", class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" } %>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
       </div>
 
       <!-- Banheiros -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700 mb-2">
+      <div class="sm:col-span-2">
+        <label for="bathrooms" class="block text-sm/6 font-medium text-gray-900">
           Banheiros
         </label>
-        <%= f.select :bathrooms_eq, 
-            options_for_select([
-              ['Qualquer', ''],
-              ['1 banheiro', '1'],
-              ['2 banheiros', '2'], 
-              ['3 banheiros', '3'],
-              ['4+ banheiros', '4']
-            ], params.dig(:q, :bathrooms_eq)),
-            {},
-            { class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" } %>
+        <div class="mt-2 grid grid-cols-1">
+          <%= f.select :bathrooms_eq, 
+              options_for_select([
+                ['Qualquer', ''],
+                ['1 banheiro', '1'],
+                ['2 banheiros', '2'], 
+                ['3 banheiros', '3'],
+                ['4+ banheiros', '4']
+              ], params.dig(:q, :bathrooms_eq)),
+              {},
+              { id: "bathrooms", class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" } %>
+          <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Botão de Busca Rápida -->
+      <div class="sm:col-span-2 flex items-end">
+        <%= f.submit "Buscar", class: "w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
       </div>
     </div>
 
     <!-- Filtros Avançados (Colapsível) -->
-    <div class="border-t pt-4">
+    <div class="border-t border-gray-900/10 pt-6 mt-8">
       <button type="button" 
-              class="flex items-center justify-between w-full text-left text-sm font-medium text-gray-700 hover:text-gray-900"
+              class="flex items-center justify-between w-full text-left text-sm/6 font-semibold text-gray-900 hover:text-indigo-600"
               onclick="toggleAdvancedFilters()"
               id="advanced-filters-toggle">
         <span>Filtros Avançados</span>
@@ -93,42 +115,50 @@
         </svg>
       </button>
       
-      <div id="advanced-filters" class="hidden mt-4 space-y-4">
+      <div id="advanced-filters" class="hidden mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <!-- Faixa de Preço -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">
-              Preço Mínimo
-            </label>
+        <div class="sm:col-span-2">
+          <label for="price_min" class="block text-sm/6 font-medium text-gray-900">
+            Preço Mínimo
+          </label>
+          <div class="mt-2">
             <%= f.number_field :price_gteq, 
-                placeholder: "Ex: 300000", 
-                class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+                id: "price_min",
+                placeholder: "Ex: 300.000", 
+                class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" %>
           </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">
-              Preço Máximo  
-            </label>
+        </div>
+        
+        <div class="sm:col-span-2">
+          <label for="price_max" class="block text-sm/6 font-medium text-gray-900">
+            Preço Máximo  
+          </label>
+          <div class="mt-2">
             <%= f.number_field :price_lteq, 
-                placeholder: "Ex: 800000", 
-                class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+                id: "price_max",
+                placeholder: "Ex: 800.000", 
+                class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" %>
           </div>
         </div>
 
-        <!-- Área e Extras -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">
-              Área Mínima (m²)
-            </label>
+        <div class="sm:col-span-2">
+          <label for="area_min" class="block text-sm/6 font-medium text-gray-900">
+            Área Mínima (m²)
+          </label>
+          <div class="mt-2">
             <%= f.number_field :area_m2_gteq, 
+                id: "area_min",
                 placeholder: "Ex: 80", 
-                class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+                class: "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" %>
           </div>
-          
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-2">
-              Vagas de Garagem
-            </label>
+        </div>
+        
+        <!-- Vagas de Garagem -->
+        <div class="sm:col-span-2">
+          <label for="garage_spaces" class="block text-sm/6 font-medium text-gray-900">
+            Vagas de Garagem
+          </label>
+          <div class="mt-2 grid grid-cols-1">
             <%= f.select :garage_spaces_gteq, 
                 options_for_select([
                   ['Qualquer', ''],
@@ -137,31 +167,41 @@
                   ['3+ vagas', '3']
                 ], params.dig(:q, :garage_spaces_gteq)),
                 {},
-                { class: "w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" } %>
+                { id: "garage_spaces", class: "col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" } %>
+            <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+            </svg>
           </div>
+        </div>
 
-          <div class="flex items-center pt-8">
-            <input type="hidden" name="q[furnished_eq]" value="">
-            <%= f.check_box :furnished_eq, 
-                { checked: params.dig(:q, :furnished_eq) == '1' }, 
-                '1', '' %>
-            <label class="ml-2 text-sm text-gray-700">
-              Apenas mobilados
-            </label>
+        <!-- Checkbox Mobilado -->
+        <div class="sm:col-span-4 flex items-center gap-3 pt-8">
+          <div class="flex h-6 shrink-0 items-center">
+            <div class="group grid size-4 grid-cols-1">
+              <%= f.check_box :furnished_eq, 
+                  { checked: params.dig(:q, :furnished_eq) == '1', id: "furnished", class: "col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto" }, 
+                  '1', '' %>
+              <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
+                <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="text-sm/6">
+            <label for="furnished" class="font-medium text-gray-900">Apenas imóveis mobilados</label>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Ações -->
-    <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t">
-      <%= f.submit "Aplicar Filtros", 
-          class: "bg-indigo-600 text-white py-2 px-6 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-      
+    <div class="mt-6 flex items-center justify-end gap-x-6">
       <%= link_to "Limpar Filtros", properties_path, 
-          class: "text-center bg-gray-200 text-gray-700 py-2 px-6 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2" %>
+          class: "text-sm/6 font-semibold text-gray-900 hover:text-indigo-600" %>
+      
+      <%= f.submit "Aplicar Filtros", 
+          class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
           
-      <div class="text-sm text-gray-500 self-center">
+      <div class="text-sm/6 text-gray-600">
         <% if @search_performed %>
           <strong><%= @total_properties %></strong> imóveis encontrados
         <% else %>

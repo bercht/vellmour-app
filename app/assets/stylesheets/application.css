@@ -13,3 +13,31 @@
  *= require_tree .
  *= require_self
  */
+/* Animações suaves para o preview de imagens */
+.image-preview-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.image-preview-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.image-preview-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.image-preview-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Hover effect para as miniaturas */
+.image-preview-thumbnail:hover {
+  transform: scale(1.05);
+  transition: transform 200ms ease-in-out;
+}

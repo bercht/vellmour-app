@@ -4,22 +4,22 @@ class Property < ApplicationRecord
   belongs_to :neighborhood
   has_many_attached :images
   
-  # Validações existentes
   validates :title, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :description, presence: true
   validates :neighborhood, presence: true
   
-  # Validações dos novos campos
-  validates :bedrooms, presence: true, numericality: { greater_than: 0 }
-  validates :bathrooms, presence: true, numericality: { greater_than: 0 }
-  validates :area_m2, presence: true, numericality: { greater_than: 0 }
-  validates :garage_spaces, numericality: { greater_than_or_equal_to: 0 }
-  validates :property_type, presence: true
+  # Validações opcionais para os novos campos
+  validates :bedrooms, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+  validates :bathrooms, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+  validates :area_m2, numericality: { greater_than: 0 }, allow_blank: true
+  validates :garage_spaces, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true
+  validates :property_type, inclusion: { 
+    in: ['casa', 'apartamento', 'cobertura', 'casa_condominio', 'loft', 'studio', 'kitnet', 'sobrado', 'chacara', 'terreno', 'comercial'] 
+  }, allow_blank: true
   
   validate :featured_limit
   
-  # Scopes existentes
   scope :featured, -> { where(featured: true) }
   scope :not_featured, -> { where(featured: false) }
   

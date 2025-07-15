@@ -1,8 +1,9 @@
 class Admin::PropertiesController < Admin::BaseController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
+  before_action :set_neighborhoods, only: [:new, :create, :edit, :update]
 
   def index
-    @properties = Property.includes(:neighborhood).all
+    @properties = Property.includes(:neighborhood, images_attachments: :blob).order(created_at: :desc)
   end
 
   def show
@@ -10,37 +11,57 @@ class Admin::PropertiesController < Admin::BaseController
 
   def new
     @property = Property.new
-    @neighborhoods = Neighborhood.all
   end
 
   def create
     @property = Property.new(property_params)
-    @neighborhoods = Neighborhood.all
+    
+    Rails.logger.debug "=== DEBUG CREATE PROPERTY ==="
+    Rails.logger.debug "Params recebidos: #{params.inspect}"
+    Rails.logger.debug "Property params: #{property_params.inspect}"
+    Rails.logger.debug "Property valid?: #{@property.valid?}"
+    Rails.logger.debug "Property errors: #{@property.errors.full_messages}" unless @property.valid?
     
     if @property.save
-      redirect_to admin_properties_path, notice: 'Propriedade criada com sucesso.'
+      Rails.logger.debug "Property salva com sucesso! ID: #{@property.id}"
+      redirect_to admin_property_path(@property), notice: 'Imóvel criado com sucesso!'
     else
+      Rails.logger.debug "Falha ao salvar property: #{@property.errors.full_messages}"
+      flash.now[:alert] = "Erro ao criar imóvel. Verifique os campos obrigatórios."
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @neighborhoods = Neighborhood.all
   end
 
   def update
-    @neighborhoods = Neighborhood.all
+    # Separar imagens dos outros parâmetros
+    images = property_params.delete(:images)
     
+    Rails.logger.debug "=== DEBUG UPDATE PROPERTY ==="
+    Rails.logger.debug "Property params (sem imagens): #{property_params.inspect}"
+    Rails.logger.debug "Novas imagens: #{images&.length || 0} arquivos"
+    
+    # Atualizar campos normais (sem imagens)
     if @property.update(property_params)
-      redirect_to admin_properties_path, notice: 'Propriedade atualizada com sucesso.'
+      # Anexar novas imagens (se houver) SEM remover as existentes
+      if images.present?
+        @property.images.attach(images)
+        Rails.logger.debug "#{images.length} novas imagens anexadas. Total de imagens: #{@property.images.count}"
+      end
+      
+      redirect_to admin_property_path(@property), notice: 'Imóvel atualizado com sucesso!'
     else
+      Rails.logger.debug "Falha ao atualizar property: #{@property.errors.full_messages}"
+      flash.now[:alert] = "Erro ao atualizar imóvel."
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @property.destroy
-    redirect_to admin_properties_path, notice: 'Propriedade deletada com sucesso.'
+    redirect_to admin_properties_path, notice: 'Imóvel removido com sucesso!'
   end
 
   private
@@ -49,7 +70,24 @@ class Admin::PropertiesController < Admin::BaseController
     @property = Property.find(params[:id])
   end
 
+  def set_neighborhoods
+    @neighborhoods = Neighborhood.order(:name)
+  end
+
   def property_params
-    params.require(:property).permit(:title, :price, :description, :neighborhood_id, :featured, images: [])
+    params.require(:property).permit(
+      :title, 
+      :price, 
+      :description, 
+      :neighborhood_id, 
+      :featured, 
+      :bedrooms, 
+      :bathrooms, 
+      :area_m2, 
+      :garage_spaces, 
+      :property_type, 
+      :furnished,
+      images: []
+    )
   end
 end

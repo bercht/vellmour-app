@@ -79,9 +79,10 @@
               <span class="sr-only">Seu perfil</span>
               <div class="flex-1">
                 <div class="text-white text-sm truncate"><%= current_user.email %></div>
-                <%= link_to "Sair", destroy_user_session_path, 
-                    data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja sair?" }, 
-                    class: "text-xs text-gray-400 hover:text-white" %>
+                <%= button_to "Sair", destroy_user_session_path, 
+                  method: :delete,
+                  form: { data: { turbo_confirm: "Tem certeza que deseja sair?" } },
+                  class: "text-xs text-gray-400 hover:text-white bg-transparent border-0 p-0 cursor-pointer" %>
               </div>
             </div>
           </li>

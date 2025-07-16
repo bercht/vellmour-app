@@ -1,11 +1,22 @@
-// Import and register all your controllers from the importmap via controllers/**/*_controller
+// Import and register Stimulus controllers manually.
 import { application } from "controllers/application"
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
-eagerLoadControllersFrom("controllers", application)
-
 
 import NavbarController from "./navbar_controller"
 import DropdownController from "./dropdown_controller"
+import ConfirmDeleteController from "./confirm_delete_controller"
+import LogoutController from "./logout_controller"
+import MobileMenuController from "./mobile_menu_controller"
+import ImagePreviewController from "./image_preview_controller"
+import FlashController from "./flash_controller"
+import SweetalertController from "./sweetalert_controller"
+import HelloController from "./hello_controller"
 
 application.register("navbar", NavbarController)
 application.register("dropdown", DropdownController)
+application.register("confirm-delete", ConfirmDeleteController)
+application.register("logout", LogoutController)
+application.register("mobile-menu", MobileMenuController)
+application.register("image-preview", ImagePreviewController)
+application.register("flash", FlashController)
+application.register("sweetalert", SweetalertController)
+application.register("hello", HelloController)

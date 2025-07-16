@@ -14,12 +14,10 @@ class PropertiesController < ApplicationController
     # Busca com Ransack sobre a base filtrada
     @q = base_properties.ransack(params[:q])
     
-    # Resultados finais (removendo distinct: true)
-    @properties = @q.result
-                    .order(featured: :desc, created_at: :desc)
-                    .limit(24)
+    # Paginação com Pagy (24 itens por página)
+    @pagy, @properties = pagy(@q.result.order(featured: :desc, created_at: :desc), items: 24)
     
-    # Para estatísticas
+    # Para estatísticas (total sem paginação)
     @total_properties = @q.result.count
     @search_performed = search_params_present?
   end

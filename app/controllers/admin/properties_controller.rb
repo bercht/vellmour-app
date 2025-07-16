@@ -11,6 +11,7 @@ class Admin::PropertiesController < Admin::BaseController
 
   def new
     @property = Property.new
+    @neighborhoods = Neighborhood.alphabetical
   end
 
   def create
@@ -42,6 +43,7 @@ class Admin::PropertiesController < Admin::BaseController
     Rails.logger.debug "=== DEBUG UPDATE PROPERTY ==="
     Rails.logger.debug "Property params (sem imagens): #{property_params.inspect}"
     Rails.logger.debug "Novas imagens: #{images&.length || 0} arquivos"
+
     
     # Atualizar campos normais (sem imagens)
     if @property.update(property_params)
@@ -71,7 +73,7 @@ class Admin::PropertiesController < Admin::BaseController
   end
 
   def set_neighborhoods
-    @neighborhoods = Neighborhood.order(:name)
+    @neighborhoods = Neighborhood.alphabetical
   end
 
   def property_params

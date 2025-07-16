@@ -1,9 +1,9 @@
 class Admin::NeighborhoodsController < Admin::BaseController
   before_action :set_neighborhood, only: [ :show, :edit, :update, :destroy ]
 
-  def index
-    @neighborhoods = Neighborhood.all
-  end
+def index
+  @neighborhoods = Neighborhood.alphabetical
+end
 
   def show
   end

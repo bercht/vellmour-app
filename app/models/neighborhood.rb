@@ -5,6 +5,9 @@ class Neighborhood < ApplicationRecord
   friendly_id :name, use: :slugged
   
   validates :name, presence: true, uniqueness: true
+
+  scope :alphabetical, -> { order(:name) }
+  scope :by_name, -> { order(:name) }
   
   # RANSACK - Atributos permitidos para busca
   def self.ransackable_attributes(auth_object = nil)

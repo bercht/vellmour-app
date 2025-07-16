@@ -64,6 +64,7 @@ gem "tailwindcss-rails", "~> 4.3"
 
 gem "devise", "~> 4.9"
 gem "devise-i18n"
+gem "rails-i18n", "~> 7.0.0"
 
 gem "aws-sdk-s3", "~> 1.192"
 gem "friendly_id", "~> 5.4"

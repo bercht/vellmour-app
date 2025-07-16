@@ -65,7 +65,7 @@
               
               <div class="absolute left-0 z-10 mt-2 w-48 origin-top-left rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 hidden"
                    data-dropdown-target="menu">
-                <% Neighborhood.all.each do |neighborhood| %>
+                <% Neighborhood.alphabetical.each do |neighborhood| %>
                   <%= link_to neighborhood.name, neighborhood_path(neighborhood), 
                       class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                 <% end %>
@@ -74,7 +74,7 @@
             
             <!-- Menu Admin (apenas se logado) -->
             <% if user_signed_in? %>
-              <%= link_to "Administração", admin_root_path, 
+              <%= link_to "Dashboard", admin_root_path, 
                   class: "rounded-md px-3 py-2 text-sm font-medium #{'bg-gray-900 text-white' if request.path.starts_with?('/admin')} #{'text-gray-300 hover:bg-gray-700 hover:text-white' unless request.path.starts_with?('/admin')}" %>
             <% end %>
           </div>

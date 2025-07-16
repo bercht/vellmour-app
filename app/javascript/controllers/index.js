@@ -1,8 +1,7 @@
 // app/javascript/controllers/index.js
-import { application } from "./application"  
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
-eagerLoadControllersFrom("controllers", application)
+import { application } from "./application"
 
+// Registrar controllers manualmente (sem stimulus-loading)
 import NavbarController from "./navbar_controller"
 import DropdownController from "./dropdown_controller"
 import ConfirmDeleteController from "./confirm_delete_controller"

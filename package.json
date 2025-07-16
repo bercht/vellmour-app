@@ -6,7 +6,7 @@
     "yarn": "1.x"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --public-path=/assets"
+    "build": "esbuild app/javascript/app.js --bundle --outdir=app/assets/builds --outfile=app/assets/builds/application.js --public-path=/assets"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.0",

@@ -29,12 +29,15 @@
                       <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-300"><%= neighborhood.properties.count %> imóveis</td>
                         <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-300"><%= link_to "Editar", edit_admin_neighborhood_path(neighborhood), 
                           class: "text-blue-600 hover:text-blue-900" %>
-                        <%= link_to "Deletar", admin_neighborhood_path(neighborhood), 
-                      data: { 
-                        "turbo-method": "delete",
-                        "turbo-confirm": "Tem certeza? Isso deletará todos os imóveis deste bairro." 
-                      },
-                      class: "text-red-600 hover:text-red-900" %>
+                        <%= link_to "Deletar", "#", 
+                            data: { 
+                              controller: "confirm-delete",
+                              action: "click->confirm-delete#confirm",
+                              "confirm-delete-message-value": "Isso deletará todos os imóveis deste bairro.",
+                              "confirm-delete-url-value": admin_neighborhood_path(neighborhood),
+                              "confirm-delete-method-value": "delete"
+                            },
+                            class: "text-red-600 hover:text-red-900" %>
                       </td>
                     </tr>
                   <% end %>

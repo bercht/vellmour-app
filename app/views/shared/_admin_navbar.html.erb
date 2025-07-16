@@ -137,13 +137,13 @@
   <!-- Menu Mobile -->
   <div class="sm:hidden hidden" id="mobile-menu" data-navbar-target="menu">
     <div class="space-y-1 px-2 pt-2 pb-3">
-      <%= link_to "Imóveis", properties_path, 
-          class: "block rounded-md px-3 py-2 text-base font-medium #{'bg-gray-900 text-white' if current_page?(properties_path)} #{'text-gray-300 hover:bg-gray-700 hover:text-white' unless current_page?(properties_path)}" %>
+      <%= link_to "Imóveis", admin_properties_path, 
+          class: "block rounded-md px-3 py-2 text-base font-medium #{'bg-gray-900 text-white' if current_page?(admin_properties_path)} #{'text-gray-300 hover:bg-gray-700 hover:text-white' unless current_page?(admin_properties_path)}" %>
       
       <!-- Bairros no Mobile -->
       <div class="text-gray-400 px-3 py-2 text-base font-medium">Bairros:</div>
       <% Neighborhood.all.each do |neighborhood| %>
-        <%= link_to neighborhood.name, neighborhood_path(neighborhood), 
+        <%= link_to neighborhood.name, admin_neighborhood_path(neighborhood), 
             class: "block rounded-md px-6 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
       <% end %>
       

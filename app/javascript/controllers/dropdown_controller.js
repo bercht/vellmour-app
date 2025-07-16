@@ -2,45 +2,34 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["menu"]
+  static targets = ["dropdownContent", "openButton", "closeButton"]
+  static values = { open: Boolean }
 
   connect() {
-    console.log("Dropdown controller connected")
-    // Garantir que o dropdown está fechado no início
-    this.close()
-    
-    // Adicionar listener para clicks fora
-    document.addEventListener('click', this.handleClickOutside.bind(this))
-  }
-
-  disconnect() {
-    document.removeEventListener('click', this.handleClickOutside.bind(this))
-  }
-
-  toggle() {
-    console.log("Toggle dropdown called")
-    
-    if (this.menuTarget.classList.contains("hidden")) {
-      this.open()
+    if (this.openValue) {
+      this.openDropdown()
     } else {
-      this.close()
+      this.closeDropdown()
     }
   }
 
-  open() {
-    console.log("Opening dropdown")
-    this.menuTarget.classList.remove("hidden")
-  }
-
-  close() {
-    console.log("Closing dropdown")
-    this.menuTarget.classList.add("hidden")
-  }
-
-  // Fechar dropdown quando clicar fora
-  handleClickOutside(event) {
-    if (!this.element.contains(event.target) && !this.menuTarget.classList.contains("hidden")) {
-      this.close()
+  toggleDropdown() {
+    if (this.dropdownContentTarget.hidden == true) {
+      this.openDropdown()
+    } else {
+      this.closeDropdown()
     }
+  }
+
+  openDropdown() {
+    this.dropdownContentTarget.hidden = false
+    this.openButtonTarget.hidden = true
+    this.closeButtonTarget.hidden = false
+  }
+
+  closeDropdown() {
+    this.dropdownContentTarget.hidden = true
+    this.openButtonTarget.hidden = false
+    this.closeButtonTarget.hidden = true
   }
 }

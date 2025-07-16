@@ -1,4 +1,5 @@
 class Admin::DashboardController < Admin::BaseController
+  layout 'admin'
   def index
     # Estatísticas para o dashboard
     @total_properties = Property.count

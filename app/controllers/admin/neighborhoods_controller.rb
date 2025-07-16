@@ -1,11 +1,14 @@
-class Admin::NeighborhoodsController < Admin::BaseController
+class Admin::NeighborhoodsController < Admin::BaseController 
+  layout 'admin'
   before_action :set_neighborhood, only: [ :show, :edit, :update, :destroy ]
 
-def index
-  @neighborhoods = Neighborhood.alphabetical
-end
+  def index
+    @neighborhoods = Neighborhood.alphabetical
+  end
 
   def show
+    @neighborhood = Neighborhood.includes(properties: { images_attachments: :blob })
+                             .friendly.find(params[:id])
   end
 
   def new

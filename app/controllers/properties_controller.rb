@@ -3,19 +3,21 @@ class PropertiesController < ApplicationController
   before_action :set_search_data, only: [:index]
 
   def index
-    # Busca com Ransack
-    @q = Property.includes(:neighborhood, images_attachments: :blob).ransack(params[:q])
+    # Começar com a base das propriedades
+    base_properties = Property.includes(:neighborhood, images_attachments: :blob)
     
     # Aplicar busca por palavras-chave se fornecida
     if params[:keywords].present?
-      properties_with_keywords = Property.search_by_keywords(params[:keywords])
-      @q.result = @q.result.merge(properties_with_keywords)
+      base_properties = base_properties.search_by_keywords(params[:keywords])
     end
     
-    # Resultados sem paginação (por enquanto)
-    @properties = @q.result(distinct: true)
+    # Busca com Ransack sobre a base filtrada
+    @q = base_properties.ransack(params[:q])
+    
+    # Resultados finais (removendo distinct: true)
+    @properties = @q.result
                     .order(featured: :desc, created_at: :desc)
-                    .limit(24) # Limite para não sobrecarregar a página
+                    .limit(24)
     
     # Para estatísticas
     @total_properties = @q.result.count

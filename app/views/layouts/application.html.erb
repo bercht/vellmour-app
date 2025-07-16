@@ -22,8 +22,8 @@
 
   <body class="bg-gray-50 min-h-screen flex flex-col">
     <!-- Navbar (renderizada condicionalmente - exceto home/index) -->
-    <% unless controller_name == "home" && action_name == "index" || 
-            controller_name == "dashboard" && action_name == "index" %>
+    <% unless (controller_name == "home" && action_name == "index") || 
+              request.path.start_with?("/admin") %>
       <%= render 'shared/navbar' %>
     <% end %>
     <%= render 'shared/flash_messages'%>

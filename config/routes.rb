@@ -31,9 +31,5 @@ Rails.application.routes.draw do
       end
     end
   end
-  if Rails.env.production?
-    direct :rails_public_blob, Rails.application.routes.url_helpers.method(:rails_blob_url)
-    direct :rails_blob_representation, Rails.application.routes.url_helpers.method(:rails_representation_url)
-  end
 
 end

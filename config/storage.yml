@@ -12,4 +12,5 @@ amazon:
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) || ENV['AWS_SECRET_ACCESS_KEY'] %>
   region: sa-east-1
   bucket: vellmour-rails-production
-  
+  upload:
+    server_side_encryption: AES256

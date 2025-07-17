@@ -36,6 +36,7 @@ gem "ransack"
 gem "pg_search"
 gem 'pagy'
 
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -66,6 +67,7 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "devise", "~> 4.9"
 gem "devise-i18n"
 gem "rails-i18n", "~> 7.0.0"
-
 gem "aws-sdk-s3", "~> 1.192"
+gem "image_processing", "~> 1.2"
 gem "friendly_id", "~> 5.4"
+

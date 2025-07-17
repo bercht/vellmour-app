@@ -19,6 +19,7 @@ Rails.application.configure do
   # Configuração do ActiveStorage
   config.active_storage.service = :amazon
   config.active_storage.variant_processor = :mini_magick
+  config.active_storage.resolve_model_to_route = :rails_storage_proxy
   
   # Configuração de logs
   if ENV["RAILS_LOG_TO_STDOUT"].present?
@@ -28,8 +29,8 @@ Rails.application.configure do
   end
   
   # Configurações de produção
-  config.action_mailer.default_url_options = { host: 'vellmour-app-802a26ce0f21.herokuapp.com/' }
-  config.action_controller.default_url_options = { host: 'vellmour-app-802a26ce0f21.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'vellmour-app-802a26ce0f21.herokuapp.com' }
+  config.action_controller.default_url_options = { host: 'vellmour-app-802a26ce0f21.herokuapp.com' }
   config.active_storage.service = :amazon
   config.active_storage.variant_processor = :mini_magick
   config.force_ssl = true

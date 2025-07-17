@@ -31,21 +31,9 @@ Rails.application.routes.draw do
       end
     end
   end
-end
+  if Rails.env.production?
+    direct :rails_public_blob, Rails.application.routes.url_helpers.method(:rails_blob_url)
+    direct :rails_blob_representation, Rails.application.routes.url_helpers.method(:rails_representation_url)
+  end
 
-# Rails.application.routes.draw do
-#   devise_for :users
-#   root 'home#index'
-  
-#   resources :properties, only: [:index, :show]
-#   resources :neighborhoods, only: [:show]
-  
-#   namespace :admin do
-#     root 'dashboard#index'
-#     resources :users
-#     resources :neighborhoods
-#     resources :properties do
-#       resources :images, only: [:destroy], module: :properties
-#     end
-#   end
-# end
+end

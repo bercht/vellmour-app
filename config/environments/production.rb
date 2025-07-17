@@ -15,6 +15,12 @@ Rails.application.configure do
   
   # Configuração para Rails 7 + Stimulus
   config.importmap.sweep_cache = true
+
+  # Configuração do ActiveStorage
+  config.active_storage.service = :amazon
+  config.active_storage.variant_processor = :mini_magick
+  config.active_storage.resolve_model_to_route = :rails_storage_proxy
+  config.active_storage.draw_routes = true
   
   # Configuração de logs
   if ENV["RAILS_LOG_TO_STDOUT"].present?

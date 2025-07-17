@@ -11,6 +11,7 @@ import ImagePreviewController from "./image_preview_controller"
 import FlashController from "./flash_controller"
 import SweetalertController from "./sweetalert_controller"
 import HelloController from "./hello_controller"
+import SpotlightController from "./spotlight_controller"
 
 application.register("navbar", NavbarController)
 application.register("dropdown", DropdownController)
@@ -21,3 +22,4 @@ application.register("image-preview", ImagePreviewController)
 application.register("flash", FlashController)
 application.register("sweetalert", SweetalertController)
 application.register("hello", HelloController)
+application.register("spotlight", SpotlightController)

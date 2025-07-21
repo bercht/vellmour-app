@@ -53,6 +53,19 @@
     <!-- Footer (apenas em páginas públicas) -->
     
     <%= render 'shared/admin_footer' %>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        console.log("Stimulus Application:", window.Stimulus);
+        console.log("Controllers registrados:", window.Stimulus.router.modulesByIdentifier);
+        
+        // Verificar se o SweetAlert está carregado
+        if (typeof Swal === 'undefined') {
+          console.error('SweetAlert2 não está carregado!');
+        } else {
+          console.log('SweetAlert2 carregado com sucesso');
+        }
+      });
+      </script>
     
   </body>
 </html>

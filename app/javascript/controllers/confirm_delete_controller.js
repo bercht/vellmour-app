@@ -47,6 +47,9 @@ export default class extends Controller {
     csrfInput.value = document.querySelector('meta[name="csrf-token"]').content
     form.appendChild(csrfInput)
     
+    // Adicionar suporte ao Turbo
+    form.setAttribute('data-turbo', 'true')
+    
     // Adicionar ao DOM e submeter
     document.body.appendChild(form)
     form.submit()

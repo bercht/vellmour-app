@@ -3,6 +3,15 @@ class Property < ApplicationRecord
   include PgSearch::Model
 
   friendly_id :title, use: :slugged
+
+  geocoded_by :full_address 
+  after_validation :geocode, if: ->(obj){ obj.address.present? && (obj.address_changed? || obj.neighborhood_id_changed?) }
+
+  def full_address
+    # Garante que o bairro já esteja carregado para evitar N+1
+    # O compact.join garante que partes nulas não entrem na string.
+    [address, neighborhood&.name, "Pindamonhangaba", "SP", "Brasil"].compact.join(', ')
+  end
   
   belongs_to :neighborhood
   has_many_attached :images
@@ -11,6 +20,7 @@ class Property < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :description, presence: true
   validates :neighborhood, presence: true
+  validates :address, presence: true
   
   # Validações opcionais para os novos campos
   validates :bedrooms, numericality: { greater_than_or_equal_to: 0 }, allow_blank: true

@@ -182,6 +182,15 @@
                       class: "block w-full rounded-md border-0 bg-gray-700 py-2 px-3 text-white shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
                 </div>
               </div>
+              <div class="col-span-full">
+                <%= form.label :address, "Endereço", class: "block text-sm font-medium text-white" %>
+                <div class="mt-2">
+                  <%= form.text_field :address, 
+                      class: "block w-full rounded-md border-0 bg-gray-700 py-2 px-3 text-white shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6", 
+                      placeholder: "Endereço c/ numero, ex: Rua Tal, 123",
+                      required: true %>
+                </div>
+              </div>
 
               <!-- Bairro -->
               <div class="col-span-full">

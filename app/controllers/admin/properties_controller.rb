@@ -97,6 +97,9 @@ class Admin::PropertiesController < Admin::BaseController
       :garage_spaces, 
       :property_type, 
       :furnished,
+      :address,
+      :latitude,
+      :longitude,
       images: []
     )
   end
